@@ -6,6 +6,6 @@ module.exports = merge(common, {
   mode: 'production',
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, '..', 'jqueryMobileApp', 'www')
+    path: path.resolve(__dirname, '..', 'jquery-mobile-app-boilerplate', 'www')
   }
 });
