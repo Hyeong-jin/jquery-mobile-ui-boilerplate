@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="assets/css/jquery.mobile-1.4.5.min.css" />
+	<title>{{ title }}</title>
+</head>
+
+<body>
+
+	<div data-role="page" id="home">
+		<div data-role="header" data-position="fixed">
+			<h1>{{ title }}</h1>
+			<a href="#settings" data-icon="gear" data-transition="slideup" class="ui-btn-right">Settings</a>
+		</div>
+		<div role="main" class="ui-content" id="home-content">
+			<h2>Main page</h2>
+			<p><a href="#next" data-transition="slide">Static Page</a></p>
+			<p><a href="#page1" data-transition="slide">Lazy loaded Page 1</a></p>
+			<p><a href="#page2" data-transition="slide">Lazy loaded Page 2</a></p>
+			<p><a href="#page3" data-transition="slide">Lazy loaded Page 3</a></p>
+		</div>
+	</div>
+
+	<div data-role="page" id="next">
+		<div data-role="header" data-position="fixed">
+			<h1>Static Page</h1><a href="#home" data-transition="slide" data-direction="reverse" data-icon="arrow-l"
+				class="ui-btn-left">Home</a>
+		</div>
+		<div role="main" class="ui-content">
+			<h2>Static Page</h2>
+			<p>content</p>
+		</div>
+	</div>
+
+
+	{{#if prod}}
+	<script type="text/javascript" src="{{cordova}}"></script>
+	{{/if}}
+
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<!-- 
+App-o-Mat jQuery Mobile Cordova starter template
+Copyright 2014 Lou Franco
+https://github.com/app-o-mat/jqm-cordova-template-project
+http://app-o-mat.com
+
+MIT License
+https://github.com/app-o-mat/jqm-cordova-template-project/LICENSE.md
+-->
+
+<head>
+	<meta charset="utf-8">
+	<meta name="format-detection" content="telephone=no" />
+
+	<link rel="stylesheet" href="assets/css/jquery.mobile-1.4.5.min.css" />
+
+</head>
+
+<body>
+
+	<div data-role="page" id="home">
+		<div data-role="header" data-position="fixed">
+			<h1>jQuery Mobile App</h1><a href="#settings" data-icon="gear" data-transition="slideup"
+				class="ui-btn-right">Settings</a>
+		</div>
+		<div role="main" class="ui-content" id="home-content">
+			<h2>Main page</h2>
+			<p><a href="#next" data-transition="slide">Next Page</a></p>
+			<p><a href="#page1" data-transition="slide">Page 1</a></p>
+			<p><a href="#page2" data-transition="slide">Page 2</a></p>
+		</div>
+	</div>
+
+	<div data-role="page" id="next">
+		<div data-role="header" data-position="fixed">
+			<h1>Next</h1><a href="#home" data-transition="slide" data-direction="reverse" data-icon="arrow-l"
+				class="ui-btn-left">Home</a>
+		</div>
+		<div role="main" class="ui-content">
+			<h2>Next Page</h2>
+			<p>content</p>
+		</div>
+	</div>
+
+
+	<script type="text/javascript" src="cordova.js"></script>
+
+</body>
+
+</html>
