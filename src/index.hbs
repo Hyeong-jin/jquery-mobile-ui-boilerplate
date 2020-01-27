@@ -16,20 +16,34 @@
 		</div>
 		<div role="main" class="ui-content" id="home-content">
 			<h2>Main page</h2>
-			<p><a href="#next" data-transition="slide">Static Page</a></p>
+			<p><a href="#next">Static Page</a></p>
 			<p><a href="#page1" data-transition="slide">Lazy loaded Page 1</a></p>
 			<p><a href="#page2" data-transition="slide">Lazy loaded Page 2</a></p>
-			<p><a href="#page3" data-transition="slide">Lazy loaded Page 3</a></p>
+			<p><a href="#page4" data-transition="flip">Lazy loaded Page as Dialog</a></p>
+			<p><a href="#dialog1" data-transition="flip">Lazy loaded Page as Dialog1</a></p>
+			<p><a href="#staticpopup" data-rel="popup">Static Popup</a></p>
+			<p><a href="#newpopup" data-rel="popup" data-transition="fade" data-position="window">Lazy loaded Popup</a>
+			</p>
 		</div>
 	</div>
 
-	<div data-role="page" id="next">
+	<div data-role="page" id="next" data-url="next">
 		<div data-role="header" data-position="fixed">
 			<h1>Static Page</h1><a href="#home" data-transition="slide" data-direction="reverse" data-icon="arrow-l"
 				class="ui-btn-left">Home</a>
 		</div>
 		<div role="main" class="ui-content">
 			<h2>Static Page</h2>
+			<p>content</p>
+		</div>
+	</div>
+
+	<div data-role="popup" id="staticpopup" data-overlay-theme="a" data-theme="a" data-dismissible="true">
+		<div data-role="header" data-position="fixed">
+			<h1>Static Popup</h1>
+		</div>
+		<div role="main" class="ui-content">
+			<h2>Static Popup</h2>
 			<p>content</p>
 		</div>
 	</div>

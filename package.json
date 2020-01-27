@@ -11,7 +11,8 @@
     "test": "cypress run",
     "page": "node scripts/page.js",
     "helper": "node scripts/helper.js",
-    "partial": "node scripts/partial.js"
+    "partial": "node scripts/partial.js",
+    "popup": "node scripts/popup.js"
   },
   "keywords": [
     "jqeury",

@@ -84,10 +84,10 @@ module.exports = {
       outputPath: '.',
       fileName: '[name].[hash:8].js',
       filesToConcat: [
-        './lib/jquery-mobile/js/jquery-2.2.4.min.js',
+        './lib/jquery-mobile/js/jquery-1.10.2.js',
         './lib/fastclick/js/fastclick.js',
-        './lib/jquery-mobile/js/jquery.mobile-1.4.5.min.js',
-        './lib/jquery-mobile-router/js/jquery.mobile.router.min.js'
+        './lib/jquery-mobile/js/jquery.mobile-1.4.5.js',
+        './lib/jquery-mobile-router/js/jquery.mobile.router.js'
       ],
       injectType: 'prepend',
       attributes: {

@@ -3,20 +3,16 @@ const fs = require('fs');
 
 const [fn, name, ...options] = process.argv.slice(2);
 
-var isDialog = options.indexOf('dialog') > -1;
-
-console.log(options, isDialog);
-
-const pathToDir = path.resolve(__dirname, '..', 'src', 'page', name || '');
+const pathToDir = path.resolve(__dirname, '..', 'src', 'popup', name || '');
 
 switch (fn) {
   case 'add':
-    createPage();
+    createPopup();
     break;
 
   case 'rm':
   case 'remove':
-    deletePage();
+    deletePopup();
     break;
 
   case 'help':
@@ -27,8 +23,8 @@ switch (fn) {
 
 function printHelps() {
   console.log(`사용법: 
-  npm run page add page-name
-  npm run page rm page-name
+  npm run popup add popup-name
+  npm run popup rm popup-name
   `);
 }
 
@@ -37,12 +33,13 @@ import rest from '../../lib/ajax';
 import style from './${name}.scss';
 import template from './${name}.hbs';
 
-export default class ${name.slice(0, 1).toLocaleUpperCase()}${name.slice(1).toLocaleLowerCase()}Page {
+export default class ${name.slice(0, 1).toLocaleUpperCase()}${name.slice(1).toLocaleLowerCase()}Popup {
   constructor() {
+    this.id = '${name}';
     this.template = template;
     this.style = style;
     this.data = {};
-    this.title = 'Page Title';
+    this.title = '${name} Popup Title';
   }
 
   render() {
@@ -50,8 +47,9 @@ export default class ${name.slice(0, 1).toLocaleUpperCase()}${name.slice(1).toLo
 
     this.retrieveApi().then(response => {
       this.data = response;
-      this.display().then(() => {
-        $d.resolve();
+      this.display().then(ui => {
+        ui.popup();
+        $d.resolve(ui);
       });
     });
 
@@ -63,27 +61,22 @@ export default class ${name.slice(0, 1).toLocaleUpperCase()}${name.slice(1).toLo
   }
 
   display() {
-    return $.when($(document.body).prepend($(template(this))));
+    return $.when($(template(this)).appendTo($.mobile.activePage));
   }
 }
 `;
 
-const styles = `[data-role=page]${isDialog ? '[data-dialog=true]' : ''}#${name} {
+const styles = `[data-role=popup]#${name} {
   // 페이지 내에서만 특별히 사용하는 스타일을 정의합니다.
   // 꼭 필요한 경우가 아니면 사용을 삼가하고 퍼블리시 쪽에 문의합니다.
 
 }
 `;
 
-const htmls = `<div data-role="page" id="${name}" ${isDialog ? 'data-dialog="true"' : ''}>
+const htmls = `<div data-role="popup" id="${name}" data-short="${name}" data-overlay-theme="a" data-theme="a" data-dismissible="true">
 
-  <div data-role="header" ${isDialog ? '' : 'data-position="fixed"'}>
+  <div data-role="header" data-position="fixed">
     <h1>{{title}}</h1>
-    ${
-      isDialog
-        ? ''
-        : '< a href = "#home" data-transition="slide" data - direction="reverse" data - icon="arrow-l" class="ui-btn-left" > Home</a>'
-    }
   </div>
   
   <div role="main" class="ui-content">
@@ -94,7 +87,7 @@ const htmls = `<div data-role="page" id="${name}" ${isDialog ? 'data-dialog="tru
 </div>
 `;
 
-function createPage() {
+function createPopup() {
   fs.access(pathToDir, fs.constants.F_OK, err => {
     if (err) {
       fs.mkdir(pathToDir, { recursive: true }, err => {
@@ -112,7 +105,7 @@ function createPage() {
   });
 }
 
-function deletePage() {
+function deletePopup() {
   fs.access(pathToDir, fs.constants.F_OK, err => {
     if (err) {
       console.error(`삭제할 디렉토리(${pathToDir})가 없습니다`);
@@ -124,7 +117,7 @@ function deletePage() {
         if (err) {
           console.error(err);
         } else {
-          console.log('페이지를 삭제하였습니다.');
+          console.log('팝업을 삭제하였습니다.');
         }
       });
     }
