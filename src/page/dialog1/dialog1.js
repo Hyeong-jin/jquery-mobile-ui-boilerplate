@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import rest from '../../lib/ajax';
+import rest from '../../net/ajax';
 import style from './dialog1.scss';
 import template from './dialog1.hbs';
 

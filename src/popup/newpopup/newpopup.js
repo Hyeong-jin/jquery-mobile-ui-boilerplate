@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import rest from '../../lib/ajax';
+import rest from '../../net/ajax';
 import style from './newpopup.scss';
 import template from './newpopup.hbs';
 

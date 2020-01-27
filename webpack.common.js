@@ -19,18 +19,18 @@ module.exports = {
   externals: {
     jquery: /^(jquery|\$)$/i,
     fastclick: /^fastclick$/i,
-    'handlebars/runtime': {
-      root: 'Handlebars',
-      amd: 'handlebars.runtime',
-      commonjs2: 'handlebars/runtime',
-      commonjs: 'handlebars/runtime'
-    },
-    handlebars: {
-      root: 'Handlebars',
-      amd: 'Handlebars',
-      commonjs: 'handlebars',
-      commonjs2: 'handlebars'
-    },
+    // 'handlebars/runtime': {
+    //   root: 'Handlebars',
+    //   amd: 'handlebars/runtime',
+    //   commonjs2: 'handlebars/runtime',
+    //   commonjs: 'handlebars/runtime'
+    // },
+    // handlebars: {
+    //   root: 'Handlebars',
+    //   amd: 'Handlebars',
+    //   commonjs: 'handlebars',
+    //   commonjs2: 'handlebars'
+    // },
     lodash: {
       commonjs: 'lodash',
       commonjs2: 'lodash',
@@ -146,11 +146,11 @@ module.exports = {
         }
       },
       {
-        test: /\.hbs$/,
+        test: /\.(hbs|handlebars)$/,
         loader: 'handlebars-loader',
         query: {
           partialDirs: [path.join(__dirname, 'pages')],
-          helperDirs: ['./src/helpers']
+          helperDirs: [path.join(__dirname, 'src', 'helpers')]
         }
       },
       {

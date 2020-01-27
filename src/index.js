@@ -5,6 +5,8 @@ import _ from 'lodash';
 import 'jquery';
 import 'fastclick';
 
+// import './helpers/json';
+
 var app = {
   initialize: function() {
     document.addEventListener('deviceready', this.onDeviceReady, false);
@@ -81,10 +83,10 @@ $(document).on('pagecontainerbeforechange', (e, ui) => {
 });
 
 $(document).on('pagecontainertransition', (e, ui) => {
-  if (!ui.prevPage.hasClass('static')) {
+  if (ui.prevPage && !ui.prevPage.hasClass('static')) {
     ui.prevPage.remove();
-    ui.toPage.trigger('updatelayout');
   }
+  ui.toPage.trigger('updatelayout');
 });
 
 $(document).on('popupafterclose', '.ui-popup', () => {

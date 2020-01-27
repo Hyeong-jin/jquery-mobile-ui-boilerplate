@@ -3,11 +3,11 @@ const fs = require('fs');
 
 const [fn, name] = process.argv.slice(2);
 
-const pathToDir = path.resolve(__dirname, '..', 'src', 'helpers', name || '');
+const pathToDir = path.resolve(__dirname, '..', 'src', 'helpers');
 
 switch (fn) {
   case 'add':
-    createHelper();
+    createDir();
     break;
 
   case 'rm':
@@ -28,25 +28,37 @@ function printHelps() {
             `);
 }
 
-const scripts = `Handlebars.registerHelper('${name}', function (text, options) {
-            return text.toUpperCase();
-          });
-          `;
+const scripts = `module.exports = function (text, options) {
+  return text.toUpperCase();
+};
+`;
 
-function createHelper() {
+function createDir() {
   fs.access(pathToDir, fs.constants.F_OK, err => {
     if (err) {
       fs.mkdir(pathToDir, { recursive: true }, err => {
         if (err) {
           console.error(err);
         } else {
-          fs.writeFileSync(path.join(pathToDir, `${name}.js`), scripts);
+          createHelper();
         }
       });
     } else {
-      console.error(`디렉토리(${pathToDir})가 이미 있습니다`);
+      createHelper();
     }
   });
+}
+function createHelper() {
+  var file = path.join(pathToDir, `${name}.js`);
+  fs.writeFileSync(file, scripts);
+  console.log(`
+          헬퍼를 생성하였습니다.
+          사용법:
+
+          {{${name} variable }}
+          {{${name} 'value for format' }}
+          
+          `);
 }
 
 function deleteHelper() {
@@ -54,8 +66,12 @@ function deleteHelper() {
     if (err) {
       console.log(`삭제할 디렉토리(${pathToDir})가 없습니다`);
     } else {
-      fs.unlinkSync(path.join(pathToDir, `${name}.js`));
+      var file = path.join(pathToDir, `${name}.js`);
+      fs.unlinkSync(file);
       fs.rmdir(pathToDir, err => {});
+      console.log(`
+      "${file}"을 삭제하였습니다.
+      `);
     }
   });
 }

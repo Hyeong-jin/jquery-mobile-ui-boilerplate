@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import rest from '../../lib/ajax';
+import rest from '../../net/ajax';
 import style from './page3.scss';
 import template from './page3.hbs';
 
