@@ -1,3 +1,3 @@
 # jQueryMobile Boilerplate
 
-JQM + handlebars + webpack
+jQM + handlebars + webpack
