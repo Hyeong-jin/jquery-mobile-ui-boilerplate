@@ -19,18 +19,6 @@ module.exports = {
   externals: {
     jquery: /^(jquery|\$)$/i,
     fastclick: /^fastclick$/i,
-    // 'handlebars/runtime': {
-    //   root: 'Handlebars',
-    //   amd: 'handlebars/runtime',
-    //   commonjs2: 'handlebars/runtime',
-    //   commonjs: 'handlebars/runtime'
-    // },
-    // handlebars: {
-    //   root: 'Handlebars',
-    //   amd: 'Handlebars',
-    //   commonjs: 'handlebars',
-    //   commonjs2: 'handlebars'
-    // },
     lodash: {
       commonjs: 'lodash',
       commonjs2: 'lodash',
@@ -39,7 +27,6 @@ module.exports = {
     }
   },
   resolve: {
-    //   fallback: path.join(__dirname, 'src', 'helpers')
     modules: [path.resolve(__dirname, 'src'), 'node_modules']
   },
   plugins: [
@@ -55,8 +42,13 @@ module.exports = {
       inject: true,
       meta: {
         'format-detection': 'telephone=no',
-        viewport:
-          'user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi, width=device-width, shrink-to-fit=no'
+        viewport: `user-scalable=no, 
+          initial-scale=1, 
+          maximum-scale=1, 
+          minimum-scale=1, 
+          target-densitydpi=device-dpi, 
+          width=device-width, 
+          shrink-to-fit=no`
       },
       templateParameters: (compilation, assets, assetTags, options) => {
         return {
@@ -202,7 +194,7 @@ module.exports = {
     ]
   },
   optimization: {
-    namedModules: process.env.NODE_ENV !== 'production'
+    namedModules: true //process.env.NODE_ENV !== 'production'
     // splitChunks: {
     //   chunks: 'all'
     // },

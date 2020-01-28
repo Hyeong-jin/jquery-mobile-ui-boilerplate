@@ -46,7 +46,9 @@ var app = {
       this.loadPage(pid, url, ui.options);
     } else {
       if (ui.options.role === 'popup') {
-        $(`#${pid}`).popup();
+        $(`#${pid}`)
+          .appendTo($.mobile.activePage)
+          .popup();
         $(`#${pid}`).popup('open');
       }
     }
