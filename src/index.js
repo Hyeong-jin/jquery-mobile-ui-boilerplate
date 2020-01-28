@@ -47,9 +47,8 @@ var app = {
     } else {
       if (ui.options.role === 'popup') {
         $(`#${pid}`)
-          .appendTo($.mobile.activePage)
-          .popup();
-        $(`#${pid}`).popup('open');
+          .popup()
+          .popup('open');
       }
     }
   },
